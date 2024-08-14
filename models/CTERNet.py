@@ -16,10 +16,7 @@ import torchvision
 from torchvision import datasets, models, transforms
 from torch.nn.modules.batchnorm import _BatchNorm
 from torch.utils.data import DataLoader
-from lib.CauLib.CAM import CAM_Module, PAM_Module
-from lib.CauLib.CC import CrissCrossAttention
-from lib.SAM import PAM_Module
-from lib.ASPP import ASPP
+from lib.CauLib.CAM import CAM_Module
 from lib.Res2Net import res2net101_v1b_26w_4s
 from torchvision import models
 
@@ -31,7 +28,6 @@ import copy
 import cv2
 
 from torch.autograd import Function, Variable
-from sklearn.cluster import KMeans, kmeans_plusplus
 
 from .SE_weight_module import SEWeightModule
 
@@ -300,4 +296,3 @@ class ResNetWSL(nn.Module):
         YTE = x_conv_copy2 - x_conv_copy
 
         return x1, YTE
-        # return x2, x_conv_copy
