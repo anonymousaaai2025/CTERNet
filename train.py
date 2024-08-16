@@ -9,16 +9,12 @@ import torch.optim as optim
 from torch.optim import lr_scheduler
 from einops import rearrange, repeat
 from einops.layers.torch import Rearrange
-# from vit import ViT
-# from models.model.WSCNet01031 import ResNetWSL, ClassWisePool
 from models.CTERNet import ResNetWSL, ClassWisePool
-# from models.model.CauMol.M1201CAM import ResNetWSL, ClassWisePool
 import numpy as np
 import torchvision
 from torchvision import datasets, models, transforms
 from torch.utils.data import DataLoader
 from lib.CAM import CAM_Module
-from lib.sobel import Sobel
 from torch.autograd import Variable
 
 import matplotlib
@@ -51,8 +47,6 @@ torch.backends.cudnn.enabled = False
 # Top level data directory. Here we assume the format of the directory conforms
 #   to the ImageFolder structure
 data_dir = './FI/'
-# data_dir = '/home/dell/newStuFile/zxy/yolov5/data/images/Emotion-6'
-# data_dir = '/home/dell/newStuFile/zxy/WSCNet/twitter/2'
 # train:19292 val:3408 total:22700
 
 # Models to choose from [resnet, alexnet, vgg, squeezenet, densenet, inception]
@@ -154,8 +148,8 @@ def train_model(model, dataloaders, criterion, optimizer, num_epochs=25, is_ince
 
 
 
-            name3 = '/models/checkpoint/FI-loss/CFI1-0701re.pth'
-            name4 = '/models/checkpoint/FI-loss/allmodelCFI1-0701re.pth'
+            name3 = '/models/checkpoint/FI-loss/CTERNet.pth'
+            name4 = '/models/checkpoint/FI-loss/allmodelCTERNet.pth'
             # deep copy the model
             if phase == 'val' and epoch_acc > best_acc:
                 best_acc = epoch_acc
